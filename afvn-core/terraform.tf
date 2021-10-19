@@ -30,7 +30,7 @@ terraform {
 provider "azurerm" {
   features {}
 }
-
+#test
 # Use Azure AD Graph to support better access management
 #provider "azuread" {
 #  use_microsoft_graph = true
