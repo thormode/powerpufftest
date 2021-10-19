@@ -1,0 +1,19 @@
+{
+    "extend_es_platform": {
+        "policy_assignments": [
+            "Deny-IP-Forwarding",
+            "Deny-RDP-From-Internet",
+            "Deploy-ASC-Monitoring",
+            "Deploy-ASC-Defender"
+        ],
+        "policy_definitions": [],
+        "policy_set_definitions": [],
+        "role_definitions": [],
+        "archetype_config": {
+            "parameters": {
+
+            },
+            "access_control": {}
+        }
+    }
+}
