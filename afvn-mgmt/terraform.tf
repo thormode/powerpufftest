@@ -25,12 +25,11 @@ terraform {
   }
 
 }
-
 module "pim_assignment_1" {
     source = "../PIM"
 
     principal_id = "727c46b6-11ca-4631-97a0-dc0b46c0355c"
-
+  
     role_definition_name = "Owner"
 }
 
@@ -38,7 +37,3 @@ module "pim_assignment_1" {
 provider "azurerm" {
   features {}
 }
-
-
-
-#test 
