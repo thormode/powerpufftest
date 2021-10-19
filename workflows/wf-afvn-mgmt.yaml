@@ -1,0 +1,50 @@
+
+name: 'afvn-mgmt'
+
+on:
+  push:
+    paths:
+      - 'afvn-mgmt/**'
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZ_SPN_AFVN_MGMT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZ_SPN_AFVN_MGMT_KEY }}
+      ARM_SUBSCRIPTION_ID: 981c0247-9dfc-41d2-9204-9863db272c6e
+      ARM_TENANT_ID: 12664069-b7f0-4ad9-9d48-ffe6a2891f7e
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: afvn-mgmt
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: terraform init
+
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Format
+      run: terraform fmt -check
+      continue-on-error: true
+
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      run: terraform plan -var-file="customer.tfvars"
+
+    # On push to master, build or change infrastructure according to Terraform configuration files
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: terraform apply -auto-approve -var-file="customer.tfvars"
