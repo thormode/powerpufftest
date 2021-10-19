@@ -25,6 +25,9 @@ terraform {
   }
 
 }
+module "pim_assignment_1" {
+    source = "../PIM"
+
 
 /*
 module "pim_assignment_1" {
@@ -35,7 +38,9 @@ module "pim_assignment_1" {
     role_definition_name = "Global administrator" #"Owner"
 }
 */
+
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
 }
+
