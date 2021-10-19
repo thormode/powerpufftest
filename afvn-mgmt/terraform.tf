@@ -26,6 +26,19 @@ terraform {
 
 }
 
+resource "azuread_group" "subscription_owner_group_1" {
+    display_name     = "subscription_owner_group_1"
+    mail_enabled     = false
+    security_enabled = true
+}
+
+module "pim_assignment_1" {
+    source = "./PIM Assignment - Subscription"
+
+    principal_id = azuread_group.subscription_owner_group_1.object_id
+    role_definition_name = "Owner"
+}
+
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
