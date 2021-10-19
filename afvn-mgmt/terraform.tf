@@ -25,7 +25,6 @@ terraform {
   }
 
 }
-
 /*
 module "pim_assignment_1" {
     source = "../PIM"
@@ -39,3 +38,4 @@ module "pim_assignment_1" {
 provider "azurerm" {
   features {}
 }
+
