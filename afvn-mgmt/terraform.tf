@@ -33,7 +33,7 @@ resource "azuread_group" "subscription_owner_group_1" {
 }
 
 module "pim_assignment_1" {
-    source = "afvn-mgmt\PIM"
+    source = "afvn-mgmt\\PIM"
 
     principal_id = azuread_group.subscription_owner_group_1.object_id
     role_definition_name = "Owner"
