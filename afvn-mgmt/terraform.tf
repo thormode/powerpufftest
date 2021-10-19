@@ -26,19 +26,16 @@ terraform {
 
 }
 
+/*
 module "pim_assignment_1" {
-    source = "..//afvn-mgmt//PIM"
+    source = "../PIM"
 
     principal_id = "727c46b6-11ca-4631-97a0-dc0b46c0355c"
 
     role_definition_name = "Owner"
 }
-
+*/
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
 }
-
-
-
-#test 
