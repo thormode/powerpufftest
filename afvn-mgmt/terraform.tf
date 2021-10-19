@@ -28,7 +28,7 @@ terraform {
 
 
 module "pim_assignment_1" {
-    source = "PIM"
+    source = "./PIM"
 
     principal_id = "727c46b6-11ca-4631-97a0-dc0b46c0355c"
 
