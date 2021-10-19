@@ -25,17 +25,11 @@ terraform {
   }
 
 }
-
-resource "azuread_group" "subscription_owner_group_1" {
-    display_name     = "subscription_owner_group_1"
-    mail_enabled     = false
-    security_enabled = true
-}
-
 module "pim_assignment_1" {
     source = "../PIM"
 
-    principal_id = azuread_group.subscription_owner_group_1.object_id
+    principal_id = "727c46b6-11ca-4631-97a0-dc0b46c0355c"
+  
     role_definition_name = "Owner"
 }
 
@@ -43,6 +37,3 @@ module "pim_assignment_1" {
 provider "azurerm" {
   features {}
 }
-
-
-
